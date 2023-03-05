@@ -1,5 +1,6 @@
 # the task here is to make an ordered list in vim
 # We are using "recording" feature in vim
+# we also learnt to use "ctrl+a" and "ctrl+x" to increment or decrement
 
 # i -- goes into insert mode
 # 1. Hello Wei[] -- Now the cursor at the end
