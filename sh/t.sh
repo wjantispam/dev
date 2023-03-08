@@ -1,24 +1,42 @@
 #!/usr/bin/env bash
+declare -a colors
 
-# You can do Base conversion like this
-echo $(( 2#101011 )) 
+colors=( $(cat $1) )
+echo "colors=${colors[@]}"
+elememt_count=${#colors[@]}
+echo the total $elememt_count
 
-E_WRONG_ARGS=85
-script_parameters="-a -h -m -z"
-#                  -a = all, -h = help, etc.
+index=0
 
-if [ $# -ne $Number_of_expected_args ]
-then
-  echo "Usage: `basename $0` $script_parameters"
-  # `basename $0` is the script's filename.
-  exit $E_WRONG_ARGS
-fi
+echo "============"
+# BAGA: You don't need $ inside ${} for the variable
+set -v
+echo ${colors[$index]}
+echo ${colors[index]}
+set +v
 
-generate_list() {
-  echo "one two three"
-}
+array_math=( $(cat $1) )
 
-for word in $(generate_list); do
-  echo $word
+# TODO: we have to be clever on the int size
+for size in ${array_math[@]}; do
+  x=${size:0:1}
+  y=${size:2:1}
+  # BAGA: If input is 1x1x10 then z is 1, 
+  z=${size:4:1}
+  let "out = x*y*x" 
+  echo "current $size, and total = $out ...."
 done
+
+for size in ${array_math[@]}; do
+  x=$(echo $size | cut -d 'x' -f 1)
+  y=$(echo $size | cut -d 'x' -f 2)
+  z=$(echo $size | cut -d 'x' -f 3)
+  let "out = x*y*x" 
+  echo "current $size, and total = $out ...."
+done
+
+
+
+
+
 
