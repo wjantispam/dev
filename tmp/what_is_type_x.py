@@ -1,5 +1,7 @@
 from typing import Type
-
+# This appeared in 
+# https://github.com/anthonywritescode/explains/tree/main/sample_code/ep096
+# about type annotation and the difference between: X and Type[X]
 class C:
     pass
 
