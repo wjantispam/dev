@@ -1,0 +1,10 @@
+./sh/abs-guide/ch37/03.sh-# resistor-inventory.sh
+./sh/abs-guide/ch37/04.sh-# cards.sh
+./sh/abs-guide/ch37/05.sh-# fetch_address.sh
+./sh/abs-guide/ch37/06.sh-# fetch_address-2.sh
+./sh/abs-guide/ch37/09.sh-# here-commsub.sh
+./sh/abs-guide/ch37/10.sh-# lastpipe-option.sh
+./sh/abs-guide/ch37/11.sh-# neg-array.sh
+./sh/abs-guide/appendix/a-01.sh-# mail-format.sh
+./sh/abs-guide/appendix/a-02.sh-# rn.sh
+./sh/abs-guide/appendix/a-03.sh-# blank-rename.sh
