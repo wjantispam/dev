@@ -16,7 +16,7 @@ function rename() {
   OLD_NAME="$1"
   NEW_NAME="$2"
   echo mv "$OLD_NAME" "${OLD_NAME%%.sh}-$NEW_NAME" 
-  mv "$OLD_NAME" "${OLD_NAME%%.sh}-$NEW_NAME" 
+  mv "$OLD_NAME" "${OLD_NAME%%.sh}-$NEW_NAME.sh" 
 }
 
 
@@ -36,4 +36,4 @@ while read -r line; do
   
 done <"${OUT_FILE}.2" # | head -n 10
 
-rm "$OUT_FILE"
+rm "$OUT_FILE.*" 
