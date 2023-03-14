@@ -4,7 +4,8 @@ import sys
 def connect(dbname="sakila"):
     try:
         conn = mariadb.connect(
-                user = "jianwei",
+                # user = "jianwei",
+                user = "dean",
                 password = "111",
                 host = "localhost",
                 database = dbname,
