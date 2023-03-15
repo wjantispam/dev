@@ -7,8 +7,9 @@ Rev02:
 import pytest
 import argparse
 from itertools import cycle
+from typing import List
 
-def part1(lines):
+def part1(lines: List) -> int:
     freq = 0
     for num in lines:
         freq += int(num)
@@ -16,9 +17,9 @@ def part1(lines):
     return freq
 
 # TODO: Function with declared type of "int" must return value on all code paths    Type "None"
-def part2(lines) -> int:
+def part2(lines: List) -> int:
     freq = 0
-    seen = set()
+    seen = {0} # Better than seen = set(), seen.add(freq). BAGA: You can't do set(freq)
     for num in cycle(lines):
         freq += int(num)
         # print(f"{int(num)} ==> {freq}")
@@ -29,6 +30,7 @@ def part2(lines) -> int:
         return freq
 
 # THINK: How to present the input file? Ans: see t.py
+# TODO: the input_s is 'List' in the original func but here is a 'str', can we make it the same?
 @pytest.mark.parametrize(
         ('input_s', 'expected'),
         (
@@ -57,8 +59,9 @@ def test_part1(input_s, expected: int) -> None:
         ('+1\n-2', 0),
     ),
 )
-def test_part2(input_s: str, expected: int) -> None:
-    assert part2(input_s) == expected
+def test_part2(input_s, expected: int) -> None:
+    lines = input_s.splitlines()
+    assert part2(lines) == expected
 
 
 def main() -> int:
