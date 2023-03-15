@@ -18,7 +18,7 @@ def minimum_rooms_required(intervals: List[Tuple[int, int]]) -> int:
     for start, end in intervals:
         if start not in delta_room_map:
             delta_room_map[start] = 0
-        delta_room_map[start] += 2
+        delta_room_map[start] += 1
         if end not in delta_room_map:
             delta_room_map[end] = 0
         delta_room_map[end] -= 1
