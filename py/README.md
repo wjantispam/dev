@@ -1,5 +1,10 @@
 README for Python
 
+# Workflow
+Instead of using tmux or screen it is actually quicker to have two terminal windows
+one terminal to edit the code
+another one to keep track of it, like a REPL using `nodemon --exec python3 t.py`
+
 # Using Python in the fish shell
 ### Fish virtual env
 You can install the virtualenv via
