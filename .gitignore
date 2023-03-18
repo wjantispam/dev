@@ -131,3 +131,7 @@ dmypy.json
 # Application related folders
 .obsidian/
 .idea/
+.vscode
+
+# My own test files
+_t.py
