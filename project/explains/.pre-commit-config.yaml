@@ -1,0 +1,20 @@
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+    -   id: trailing-whitespace
+    -   id: end-of-file-fixer
+    -   id: check-yaml
+-   repo: https://github.com/PyCQA/flake8
+    rev: 6.0.0
+    hooks:
+    -   id: flake8
+-   repo: local
+    hooks:
+    -   id: tests
+        name: tests
+        entry: pytest tests
+        additional_dependencies: [pytest]
+        pass_filenames: false
+        always_run: true
+        language: python

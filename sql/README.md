@@ -1,4 +1,5 @@
-## Install MariaDB on Debian 11 (WSL)
+## Install MariaDB
+### Debian 11 (WSL)
 
 ```
 sudo apt install mariadb-server mariadb-client
@@ -16,9 +17,12 @@ and login via (see later on how to login as user)
 it is good idea to run the follwing:
 `sudo mysql_secure_installation`
 
+### MacOS
+brew install mariadb
+
 
 ## Start or Stop
-
+### WSL
 WSL current do not use systemd, so there are two ways to
 1. Via init.d
 ```
@@ -29,6 +33,8 @@ or
 ```
 sudo service mariadb start
 ```
+### MacOS
+brew services start mariadb
 
 ## Set up local user
 
@@ -42,7 +48,14 @@ sql) FLUSH PRIVILEGES;
 $> mariadb -u jianwei -p111
 ```
 
+### MacOS
+After MariaDB Server is started, you can log in as your user:
 
+mysql
+
+Or log in as root:
+
+sudo mysql -u root
 
 
 ## Remove MariaDB
