@@ -5,6 +5,64 @@ Instead of using tmux or screen it is actually quicker to have two terminal wind
 one terminal to edit the code
 another one to keep track of it, like a REPL using `nodemon --exec python3 t.py`
 
+## Tools that I often use
+1. bpython/btpython/ipython
+1. LunarVim
+1. VSCode
+
+
+# Manage multiple environments
+## Install the new python version
+
+```sh
+$ sudo apt update
+# Install Dependencies
+$ sudo apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev wget libbz2-dev
+# Running `sudo apt install python3 -y` will not install the latest
+# Download the package from python.org then compile it
+$ wget https://www.python.org/ftp/python/3.11.1/Python-3.11.1.tgz
+$ tar -xvf Python-3.11.1.tgz
+$ cd Python-3.11.1
+$ sudo ./configure --enable-optimizations
+# The following are recommended from the installation readme file
+$ make
+$ make test
+$ sudo make install
+$ python3.11 -V # verify
+```
+
+## Activate the python environment
+
+### VirtualFish
+
+```sh
+vf new env11
+# Upgrade the current virtualenv to use the latest python
+vf upgrade --rebuild --python /usr/local/bin/python3.11
+```
+
+### VScode
+Python from the side bar -> Python Environments -> VirtualEnvWrapper -> click the thumb to activate
+
+
+
+# IPython alternatives
+## bpyton
+
+`pip3 install bpython`
+`pip3 install pyperclip`  -- enable the clipboard
+F2 to show the source code of the function
+F6 to reload the modules or packages
+F5 enable auto-reload
+F10 using pyperclip to copy it
+Ctrl+r to undo one or just the last few liens
+Ctrl+x edit code in an external editor
+Ctrl+s save the file
+
+Ref: https://realpython.com/bpython-alternative-python-repl/
+
+`pip3 install btpython`
+
 # Using Python in the fish shell
 ### Fish virtual env
 You can install the virtualenv via
