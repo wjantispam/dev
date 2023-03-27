@@ -30,6 +30,7 @@ $ make test
 $ sudo make install
 $ python3.11 -V # verify
 ```
+Other people suggested to use pyenv but I haven't tried it yet (https://blog.lazkani.io/posts/a-python-environment-setup/)
 
 ## Activate the python environment
 
