@@ -132,6 +132,8 @@ dmypy.json
 .obsidian/
 .idea/
 .vscode
+.DS_Store
+
 
 # My own test files
 _t.py
