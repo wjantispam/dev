@@ -1,0 +1,87 @@
+#!/usr/bin/env bash
+# Reference: https://www.grymoire.com/Unix/Sed.html
+echo "Instead of s/REPLACE/WITH/ , you can put any delimiter after s,
+    e.g. s|REPLACE|WITH|, s:REPLACE:WITH:"
+printf "%s" "/home/jianwei/project/" | sed 's|/home/jianwei/|/tmp/wj/|'
+
+
+echo "Using & as the matched string"
+echo "123 abc" | sed 's/[0-9]*/& &/'
+
+echo "If your sed supports -r regex then you can also have"
+echo "1abc abc" | sed -r 's/[0-9]+/& &/' # + matches 1 or more
+echo "1abc abc abc" | sed -r 's/[0-9]*/& &/' # * matches 0 or more
+
+echo "p flag means print"
+echo "By default sed prints every line, -n means not print everyline, use this with p you could print only the matching line"
+echo "log message
+contains
+ERROR: this is an error line
+INFO: this is an info line
+end status
+" | sed -n 's/ERROR/&/p'
+
+sed 'p' # duplicate everyline
+sed '/^$/p' # double every empty line
+sed '1,10 p' <old # alternative to head -n 10
+sed -n '/match/ !p' <old # alternative to grep -v match old
+
+
+echo "-e let you to use multiple commands"
+echo "we are learning sed \
+and we saving the output to old" > old
+sed -e 's/sed/bash/' \
+    -e 's/old/file/' <old >new
+
+echo "Using sed in a shell here-is document"
+echo -n 'what is the value? '
+read value
+sed  's/XYZ/'"${value}"'/' <<EOF
+The value is XYZ
+EOF
+
+echo "Restricting to a line number"
+echo "delete the first number on line 3, so just add 3 before the command"
+sed '3 s/[0-9][0-9]*' <old >new
+
+echo "You can also combine with patterns with other commands"
+echo "Find the line that starts with ERROR, then replace all \"fail\" with \"failed\""
+sed '/^ERROR s/fail/failed/g'
+
+echo "You can also limit your work by range / line numners"
+sed '1,100 s/A/a' # restrict a substitution to the first 100 lines
+sed '101,$ s/A/a' # only substitute from line 101 to the end
+
+
+echo "Combine range (line nunbers) with pattern"
+sed -e '1,/start/ s/#.*//' \ # remove commands from the beginning of the file until find \"start\" keyword
+    -e '/stop/,$  s/#.*//' # 
+# This is a Bourne shell script that removes #-type comments
+# between 'begin' and 'end' words.
+sed -n '
+	/begin/,/end/ {
+	     s/#.*//
+	     s/[ ^I]*$//
+	     /^$/ d
+	     p
+	}
+'
+
+echo "You can place a \"!\" before a set of curly braces. This inverts the address, which removes comments from all lines except those between the two reserved words:"
+
+#!/bin/sh
+sed '
+	/begin/,/end/ !{
+	     s/#.*//
+	     s/[ ^I]*$//
+	     /^$/ d
+	     p
+	}
+'
+
+echo "Can you figure out what happened here?"
+yes | head -10 | cat -n | sed -n -e '/2/,/5/ p'
+
+yes | head -10 | cat -n | sed -n -e '/2/,/5/ p' -e '/3/,/7/ p'
+
+

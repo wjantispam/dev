@@ -1,0 +1,9 @@
+while true; do
+    case "$1" in
+        --threads) threads=$2; shift 2;;
+        *) break ;;
+    esac
+done
+
+#echo "Running $0 with $2"
+echo $threads

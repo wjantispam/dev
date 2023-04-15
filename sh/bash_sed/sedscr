@@ -1,0 +1,2 @@
+# use this with checksed to test sed commands
+s/warning/WARN/g
