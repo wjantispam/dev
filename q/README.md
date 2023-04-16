@@ -24,6 +24,21 @@
 
 
 # Selects and QSQL
+Ref: https://code.kx.com/q/ref/exec/
+
+
+```
+Syntax:
+select [_Lexp_] [_ps_] [by _pb_] from _texp_ [where _pw_]
+
+where
+
+_Lexp_ Limit expression
+_ps_ Select phrase 
+_pb_ By phrase 
+_texp_ Table expression 
+_pw_ Where phrase
+```
 ## Introduction to Selects and QSQL
 ```
 select [n] ...
@@ -32,6 +47,7 @@ select [m n] ... # return n results from pos m
 m n sublist ...
 select [order] ...
 select [n; order] ....
+	sort order: use `<` for ascending, `>` for descending
 select distinct ...
 ```
 
@@ -82,12 +98,11 @@ Paul   paper   1     90       2.571429
 if you want in-place update then the table name has to be a symbol
 
 ## Delete
-Syntax:
+
+```
 delete <column> from <table>
 delete from <table> where <condition>
-
 it can also be applied to workspace
-```
 q)\v
 `a`product`sales`trader
 q)
@@ -98,3 +113,27 @@ q)\v
 q) delete `. # this deletes everything fromt he workspace
 ```
 
+
+## Insert
+```
+Syntax: `<table> insert <records>`
+```
+
+Common problems:
+1. must refer to the table with a back-tick or resulting a type error
+
+## Upsert
+
+
+
+# The Where Clause
+
+Suppose we have some trade prices and sizes for a variety of symbols and sources. If there are 50 symbols and 4 sources, with sizes evenly distributed between 1 and 100000, which of the following will be the most efficient?
+```
+select from trades where sym=`GOOG,src=`N,size>200
+select from trades where size>200,src=`N,sym=`GOOG
+select from trades where src=`N,sym=`GOOG,size>200
+select from trades where sym=`GOOG,size>200,src=`N
+```
+
+For historical database
