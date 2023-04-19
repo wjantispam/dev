@@ -95,12 +95,17 @@ or
 
 the first option that generates the `/Users/dean/Library/LaunchAgents/homebrew.mxcl.mariadb.plist` file that can be started when after reboot, and the 2nd approach can pass in arguments for more advanced control.
 
+Note, this also created a new database in the `/usr/local/var/` directory.
+
 ## my.conf
 A few folders needs to be created
 ```
 mkdir -p ~/sw/etc/mysql
 mkdir -p ~/logs/mysql
 mkdir -p ~/data/mysql
+# You will also need to move the current mysql dir
+cp /usr/local/var/mysql ~/data/
+mv /usr/local/var/mysql /usr/local/var/mysql.bak
 ```
 Here is the basic config
 ```
@@ -138,7 +143,8 @@ lrwxr-xr-x@ 1 dean  admin    31B 17 Apr 22:26 my.cnf@ -> /Users/dean/sw/etc/mysq
 
 ```
 
-
+## Verify
+if above works you can then login with `mysql`  (yes that's all you need to type)
 
 
 # Issues with MacOS
