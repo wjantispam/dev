@@ -1,0 +1,12 @@
+this is to test quotes for file with new line, and/or space, and/or symlink
+
+
+~/dev/sh/bash_quotes main                                                                                                        09:25:17
+❯ ll
+total 8
+lrwxr-xr-x@ 1 dean  staff    45B 15 Apr 09:37 --test_symlink.sh@ -> test_basename_?with_a_new? _line_and space.sh
+-rw-r--r--@ 1 dean  staff   2.3K 15 Apr 09:37 test_basename_?with_a_new? _line_and space.sh
+lrwxr-xr-x@ 1 dean  staff    45B 15 Apr 09:37 test_symlink.sh@ -> test_basename_?with_a_new? _line_and space.sh
+
+
+I've disabled the symlink so that I can use Spck Editor on my Andriod
