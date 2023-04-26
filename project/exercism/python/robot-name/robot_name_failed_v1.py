@@ -22,16 +22,13 @@ class Robot:
     # my_name = new_name()
     def reset(self):
         # self._name = None        
-        self.reset = True
+        self._name = self.new_name()
 
     @property 
     def name(self):
-        if self.reset:
+        if self._name is None:
             self._name = self.new_name()
-            
-        if self._name in self.name_pool:
-            self._name = self.new_name()
-        self.name_pool.add(self._name)
+            self.name_pool.add(self._name)
         return self._name
 
 x = Robot()
@@ -41,24 +38,3 @@ print(x.name)
 
 print(Robot().name)
 print(Robot().name)
-
-
-y = Robot()
-print(y.name)
-y.reset()
-print(y.name)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
