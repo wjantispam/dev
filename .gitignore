@@ -132,6 +132,7 @@ dmypy.json
 .obsidian/
 .idea/
 .vscode
+.exercism
 
 # My own test files
 _t.py
