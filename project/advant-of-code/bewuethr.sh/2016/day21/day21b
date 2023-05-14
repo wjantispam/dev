@@ -1,0 +1,3 @@
+#!/bin/bash
+
+awk -f day21b.awk <(tac input)

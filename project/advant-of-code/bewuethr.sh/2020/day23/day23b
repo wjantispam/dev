@@ -1,0 +1,88 @@
+#!/usr/bin/awk -f
+
+function insert(arr, ptr, val,   i) {
+	arr[val][prev] = ptr
+	arr[val][nxt] = arr[ptr][nxt]
+	arr[arr[ptr][nxt]][prev] = val
+	arr[ptr][nxt] = val
+
+	return val
+}
+
+function remove(arr, ptr) {
+	arr[arr[ptr][prev]][nxt] = arr[ptr][nxt]
+	arr[arr[ptr][nxt]][prev] = arr[ptr][prev]
+
+	delete arr[ptr]
+}
+
+function get_dest(ptr, cups, picked,   i, picked_vals) {
+	for (i in picked) {
+		++picked_vals[picked[i]]
+	}
+	do {
+		if (--ptr == 0) {
+			ptr += length(cups) + length(picked)
+		}
+	} while (ptr in picked_vals)
+	
+	return ptr
+}
+
+function dump(arr, ptr,   count) {
+	printf "(%d)", ptr
+	while (++count < length(arr)) {
+		ptr = arr[ptr][nxt]
+		printf " %d", ptr
+	}
+
+	print ""
+}
+
+BEGIN {
+	nxt = "nxt"
+	prev = "prev"
+}
+
+{ split($0, arr, //) }
+
+END {
+	ptr = arr[1]
+	head = ptr
+	cups[ptr][nxt] = arr[2]
+	cups[ptr][prev] = arr[2]
+	cups[arr[2]][prev] = ptr
+	cups[arr[2]][nxt] = ptr
+
+	ptr = cups[ptr][nxt]
+
+	for (i = 3; i <= length(arr); ++i) {
+		ptr = insert(cups, ptr, arr[i])
+	}
+
+	for (i = length(arr) + 1; i <= 1e6; ++i) {
+		ptr = insert(cups, ptr, i)
+	}
+
+	ptr = head
+
+	rounds = 10e6
+	for (i = 1; i <= rounds; ++i) {
+		picked[1] = cups[ptr][nxt]
+		picked[2] = cups[picked[1]][nxt]
+		picked[3] = cups[picked[2]][nxt]
+
+		remove(cups, picked[1])
+		remove(cups, picked[2])
+		remove(cups, picked[3])
+
+		dest = get_dest(ptr, cups, picked)
+		for (p = 1; p <= 3; ++p) {
+			dest = insert(cups, dest, picked[p])
+		}
+
+		ptr = cups[ptr][nxt]
+	}
+
+	print cups[1][nxt] * cups[cups[1][nxt]][nxt]
+}

@@ -1,0 +1,22 @@
+#!/usr/bin/awk -f
+
+@load "general"
+
+BEGIN { passwd_len = 8 }
+
+{
+    id = $0
+    idx = 0
+
+    while (1) {
+        hash = md5(id idx)
+
+        if (hash ~ /^0{5}/) {
+            passwd = passwd substr(hash, 6, 1)
+            print passwd
+            if (length(passwd) == passwd_len)
+                break
+        }
+        ++idx
+    }
+}

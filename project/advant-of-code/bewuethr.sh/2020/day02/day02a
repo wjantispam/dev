@@ -1,0 +1,11 @@
+#!/usr/bin/awk -f
+
+BEGIN {	FS = "[ :-]+" }
+
+{
+	n = gsub($3, $3, $4)
+	if (n >= $1 && n <= $2)
+		++count
+}
+
+END { print count }

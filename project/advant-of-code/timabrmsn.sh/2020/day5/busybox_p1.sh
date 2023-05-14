@@ -1,0 +1,1 @@
+sed 's/^/ibase=2;/; s/[BR]/1/g; s/[FL]/0/g' input | bc | sort -n | tail -1
